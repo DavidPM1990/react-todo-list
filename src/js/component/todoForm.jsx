@@ -24,7 +24,7 @@ const Form = ({ addTask }) => {
   return (
     <div>
       <form
-        className="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2"
+        className="row  g-3 justify-content-center align-items-center mb-4 pb-2"
         onSubmit={handleSubmit}
       >
         <div className="col-12">

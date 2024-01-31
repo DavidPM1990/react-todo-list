@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const TodoList = ({ tasks, deleteTask }) => {
+  const [highlightedIndex, setHighlightedIndex] = useState(null);
+
+  const handleMouseEnter = (index) => {
+    setHighlightedIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHighlightedIndex(null);
+  };
+
   return (
     <div>
       {tasks.length > 0 ? (
@@ -10,15 +20,21 @@ const TodoList = ({ tasks, deleteTask }) => {
           <thead></thead>
           <tbody>
             {tasks.map((task, index) => (
-              <tr key={index}>
+              <tr
+                key={index}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              >
                 <th scope="row">{index + 1}</th>
                 <td>{task}</td>
                 <td>
-                  <FontAwesomeIcon
-                    icon={faTimes}
-                    onClick={() => deleteTask(index)}
-                    style={{ cursor: "pointer" }}
-                  />
+                  {highlightedIndex === index && (
+                    <FontAwesomeIcon
+                      icon={faTimes}
+                      onClick={() => deleteTask(index)}
+                      style={{ cursor: "pointer" }}
+                    />
+                  )}
                 </td>
               </tr>
             ))}
