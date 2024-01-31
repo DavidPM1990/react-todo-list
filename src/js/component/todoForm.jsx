@@ -32,13 +32,14 @@ const Form = ({ addTask }) => {
             <input
               type="text"
               id="form1"
-              className="form-control"
+              className="form-control satisfy-regular"
               style={{
                 border: "none",
                 borderBottom: "1px solid #ced4da",
                 boxShadow: "none",
                 borderRadius: "0",
               }}
+              placeholder="What needs to be done?"
               value={sendTask}
               onChange={handleInputChange}
             />
