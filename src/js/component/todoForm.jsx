@@ -3,13 +3,13 @@ import React, { useState } from "react";
 const Form = ({ addTask }) => {
   const [sendTask, setSendTask] = useState("");
 
-  // Capturamos el valor del input con el evento de e.target.value.
+  // Capturo el valor del input con el evento de e.target.value.
 
   const handleInputChange = (e) => {
     setSendTask(e.target.value);
 
     console.log("Valor introducido por el usuario para capturar---->", e.target.value)
-    
+
   };
 
   const handleSubmit = (e) => {

@@ -55,4 +55,3 @@ const TodoList = ({ tasks, deleteTask }) => {
 };
 
 export default TodoList;
- 
