@@ -3,17 +3,17 @@ import React, { useState } from "react";
 const Form = ({ addTask }) => {
   const [sendTask, setSendTask] = useState("");
 
-  // Capturamos el valor del input con el evento de e.target.value
+  // Capturamos el valor del input con el evento de e.target.value.
 
   const handleInputChange = (e) => {
     setSendTask(e.target.value);
 
-    console.log("Valor introducido por el usuario para capturar---->",e.target.value)
+    console.log("Valor introducido por el usuario para capturar---->", e.target.value)
     
   };
 
   const handleSubmit = (e) => {
-    //Evitamos el comportamiento por defecto de la pagina que es al enviarse el formulario la página se recarga
+    //Evito el comportamiento por defecto de la pagina que es, al enviarse el formulario, la página se recarga.
     e.preventDefault();
     if (sendTask.trim() !== "") {
       addTask(sendTask);
