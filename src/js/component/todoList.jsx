@@ -26,7 +26,7 @@ const TodoList = ({ tasks, deleteTask }) => {
                 onMouseLeave={handleMouseLeave}
               >
                 <th scope="row">{index + 1}</th>
-                <td>{task}</td>
+                <td>{task.label}</td>
                 <td>
                   {highlightedIndex === index && (
                     <FontAwesomeIcon
