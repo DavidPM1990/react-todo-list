@@ -5,50 +5,52 @@ import TodoList from "./todoList";
 const Home = () => {
 
   const [tasks, setTasks] = useState([]);
-  const [defaultUser, setDefaultUser] = useState("david11");
+  const [defaultUser, setDefaultUser] = useState("david21");
 
   // Hago un useEffect con un FETCH (GET) para obtener tareas y usuario, como no hay usuario despues hago un POST.
   useEffect(() => {
     const options = {
       method: 'GET',
-      headers: { 'User-Agent': 'insomnia/8.3.0', 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.3.0' },
     };
-    // Hago un FETCH para obtener el usuario.
+
     fetch(`https://playground.4geeks.com/apis/fake/todos/user/${defaultUser}`, options)
       .then(response => {
-
         if (!response.ok) {
-
           throw Error(response.statusText);
         }
-
-        return response.json()
+        return response.json();
       })
       .then(data => {
-        setTasks(data)
+        setTasks(data);
       })
       .catch(err => {
-
         if (err.message.includes("NOT FOUND")) {
-
-          const options = {
+          const postOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'User-Agent': 'insomnia/8.3.0' },
-            body: JSON.stringify(tasks)
+            body: JSON.stringify(tasks),
           };
           // Hago un FETCH para crear el usuario.
-          fetch(`https://playground.4geeks.com/apis/fake/todos/user/${defaultUser}`, options)
+          fetch(`https://playground.4geeks.com/apis/fake/todos/user/${defaultUser}`, postOptions)
             .then(response => response.json())
             .then(response => {
               alert(response.msg);
-              window.location.reload(true);
+
+              // Después del POST, hago un GET para recuperar los datos actualizados.
+              fetch(`https://playground.4geeks.com/apis/fake/todos/user/${defaultUser}`, options)
+                .then(response => response.json())
+                .then(data => {
+                  setTasks(data);
+                })
+                .catch(err => console.error(err));
             })
             .catch(err => console.error(err));
-
         }
-        console.error(err)
+        console.error(err);
       });
-  }, [])
+  }, []);
+
 
   // Función para añadir una nueva tarea.
   const addNewTask = (task) => {
