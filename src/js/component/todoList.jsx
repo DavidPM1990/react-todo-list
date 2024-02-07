@@ -25,7 +25,7 @@ const TodoList = ({ tasks, deleteTask }) => {
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
               >
-                <th scope="row">{index + 1}</th>
+                <th scope="row">{task.lenght}</th>
                 <td>{task.label}</td>
                 <td>
                   {highlightedIndex === index && (
